@@ -1,6 +1,7 @@
 package com.dance2die.demoandroidudemytimer;
 
 import android.os.Bundle;
+import android.os.CountDownTimer;
 import android.os.Handler;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -32,16 +33,28 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        final Handler handler = new Handler();
-        Runnable runnable = new Runnable() {
-            @Override
-            public void run() {
-                Log.i("Runnable has run!", "A second must have passed...");
-                handler.postDelayed(this, 1000);
-            }
-        };
+//        final Handler handler = new Handler();
+//        Runnable runnable = new Runnable() {
+//            @Override
+//            public void run() {
+//                Log.i("Runnable has run!", "A second must have passed...");
+//                handler.postDelayed(this, 1000);
+//            }
+//        };
+//
+//        handler.post(runnable);
 
-        handler.post(runnable);
+        new CountDownTimer(10000, 1000){
+            @Override
+            public void onTick(long millisUntilFinished) {
+                Log.i("Seconds left", String.valueOf(millisUntilFinished / 1000));
+            }
+
+            @Override
+            public void onFinish() {
+                Log.i("Done!", "Countdown timer finished!!!!!!");
+            }
+        }.start();
     }
 
     @Override
